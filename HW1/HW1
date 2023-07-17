@@ -1,0 +1,537 @@
+1. Определить точную версию ядра.
+
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ cd Рабочий\ стол/Homework/
+alex@alex-Lenovo-ThinkBook-14-IIL:~/Рабочий стол/Homework$ cat > Part1
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 22.04.2 LTS
+Release:	22.04
+Codename:	jammy
+
+[alex@localhost ~]$ cat /etc/centos-release 
+CentOS Linux release 7.9.2009 (Core)
+____________________________________________________________________________________________________
+2. Вывести список модулей ядра и записать в файл
+alex@alex-Lenovo-ThinkBook-14-IIL:~/Рабочий стол/Homework$ lsmod > Part2
+Module                  Size  Used by
+ccm                    20480  6
+rfcomm                 86016  0
+cmac                   16384  0
+algif_hash             16384  0
+algif_skcipher         16384  0
+af_alg                 32768  2 algif_hash,algif_skcipher
+bnep                   28672  2
+binfmt_misc            24576  1
+snd_hda_codec_hdmi     81920  1
+snd_sof_pci_intel_icl    16384  0
+snd_sof_intel_hda_common   118784  1 snd_sof_pci_intel_icl
+soundwire_intel        40960  1 snd_sof_intel_hda_common
+soundwire_generic_allocation    16384  1 soundwire_intel
+soundwire_cadence      40960  1 soundwire_intel
+snd_sof_intel_hda      20480  1 snd_sof_intel_hda_common
+snd_sof_pci            24576  2 snd_sof_pci_intel_icl,snd_sof_intel_hda_common
+snd_sof_xtensa_dsp     16384  1 snd_sof_intel_hda_common
+snd_sof               208896  2 snd_sof_pci,snd_sof_intel_hda_common
+snd_ctl_led            24576  0
+snd_sof_utils          20480  1 snd_sof
+snd_hda_codec_realtek   163840  1
+snd_soc_hdac_hda       24576  1 snd_sof_intel_hda_common
+snd_hda_codec_generic   102400  1 snd_hda_codec_realtek
+snd_hda_ext_core       36864  3 snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_sof_intel_hda
+ledtrig_audio          16384  2 snd_ctl_led,snd_hda_codec_generic
+snd_soc_acpi_intel_match    69632  2 snd_sof_pci_intel_icl,snd_sof_intel_hda_common
+snd_soc_acpi           16384  2 snd_soc_acpi_intel_match,snd_sof_intel_hda_common
+soundwire_bus          94208  3 soundwire_intel,soundwire_generic_allocation,soundwire_cadence
+snd_soc_core          368640  4 soundwire_intel,snd_sof,snd_sof_intel_hda_common,snd_soc_hdac_hda
+snd_compress           24576  1 snd_soc_core
+ac97_bus               16384  1 snd_soc_core
+snd_pcm_dmaengine      20480  1 snd_soc_core
+snd_hda_intel          53248  3
+intel_tcc_cooling      16384  0
+snd_intel_dspcfg       36864  2 snd_hda_intel,snd_sof_intel_hda_common
+x86_pkg_temp_thermal    20480  0
+snd_intel_sdw_acpi     20480  2 snd_sof_intel_hda_common,snd_intel_dspcfg
+intel_powerclamp       24576  0
+coretemp               24576  0
+snd_hda_codec         176128  5 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec_realtek,snd_soc_hdac_hda
+snd_hda_core          114688  9 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_ext_core,snd_hda_codec,snd_hda_codec_realtek,snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_sof_intel_hda
+kvm_intel             434176  0
+snd_hwdep              20480  1 snd_hda_codec
+snd_pcm               155648  11 snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,soundwire_intel,snd_sof,snd_sof_intel_hda_common,snd_compress,snd_soc_core,snd_sof_utils,snd_hda_core,snd_pcm_dmaengine
+snd_seq_midi           20480  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+kvm                  1130496  1 kvm_intel
+snd_rawmidi            45056  1 snd_seq_midi
+mei_pxp                20480  0
+mei_hdcp               24576  0
+intel_rapl_msr         20480  0
+joydev                 32768  0
+crct10dif_pclmul       16384  1
+i915                 3129344  19
+ghash_clmulni_intel    16384  0
+iwlmvm                610304  0
+snd_seq                77824  2 snd_seq_midi,snd_seq_midi_event
+mac80211             1314816  1 iwlmvm
+drm_buddy              20480  1 i915
+uvcvideo              114688  0
+ttm                    98304  1 i915
+libarc4                16384  1 mac80211
+videobuf2_vmalloc      20480  1 uvcvideo
+drm_display_helper    184320  1 i915
+btusb                  61440  0
+aesni_intel           376832  4
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+videobuf2_memops       20480  1 videobuf2_vmalloc
+cec                    81920  2 drm_display_helper,i915
+processor_thermal_device_pci_legacy    16384  0
+btrtl                  24576  1 btusb
+crypto_simd            16384  1 aesni_intel
+snd_timer              40960  2 snd_seq,snd_pcm
+rc_core                65536  1 cec
+processor_thermal_device    20480  1 processor_thermal_device_pci_legacy
+btbcm                  24576  1 btusb
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+btintel                40960  1 btusb
+videobuf2_v4l2         32768  1 uvcvideo
+processor_thermal_rfim    24576  1 processor_thermal_device
+btmtk                  16384  1 btusb
+drm_kms_helper        200704  2 drm_display_helper,i915
+iwlwifi               503808  1 iwlmvm
+rapl                   20480  0
+processor_thermal_mbox    16384  2 processor_thermal_rfim,processor_thermal_device
+input_leds             16384  0
+videobuf2_common       81920  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops
+serio_raw              20480  0
+snd                   114688  21 snd_ctl_led,snd_hda_codec_generic,snd_seq,snd_seq_device,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_hda_codec_realtek,snd_sof,snd_timer,snd_compress,snd_soc_core,snd_pcm,snd_rawmidi
+i2c_algo_bit           16384  1 i915
+cmdlinepart            16384  0
+bluetooth             827392  15 btrtl,btmtk,btintel,btbcm,bnep,btusb,rfcomm
+intel_cstate           20480  0
+fb_sys_fops            16384  1 drm_kms_helper
+mei_me                 49152  2
+processor_thermal_rapl    20480  1 processor_thermal_device
+videodev              274432  3 videobuf2_v4l2,uvcvideo,videobuf2_common
+syscopyarea            16384  1 drm_kms_helper
+spi_nor               110592  0
+sysfillrect            20480  1 drm_kms_helper
+ucsi_acpi              16384  0
+intel_rapl_common      40960  2 intel_rapl_msr,processor_thermal_rapl
+think_lmi              36864  0
+typec_ucsi             49152  1 ucsi_acpi
+firmware_attributes_class    16384  1 think_lmi
+nls_iso8859_1          16384  1
+intel_wmi_thunderbolt    20480  0
+wmi_bmof               16384  0
+mtd                    81920  3 spi_nor,cmdlinepart
+ee1004                 20480  0
+soundcore              16384  2 snd_ctl_led,snd
+8250_dw                20480  0
+cfg80211             1044480  3 iwlmvm,iwlwifi,mac80211
+mc                     65536  4 videodev,videobuf2_v4l2,uvcvideo,videobuf2_common
+ecdh_generic           16384  1 bluetooth
+ecc                    40960  1 ecdh_generic
+mei                   143360  5 mei_hdcp,mei_pxp,mei_me
+typec                  73728  1 typec_ucsi
+sysimgblt              20480  1 drm_kms_helper
+intel_soc_dts_iosf     20480  1 processor_thermal_device_pci_legacy
+ideapad_laptop         28672  0
+elan_i2c               49152  0
+sparse_keymap          16384  1 ideapad_laptop
+int3403_thermal        20480  0
+platform_profile       16384  1 ideapad_laptop
+int340x_thermal_zone    20480  2 int3403_thermal,processor_thermal_device
+int3400_thermal        20480  0
+mac_hid                16384  0
+acpi_thermal_rel       16384  1 int3400_thermal
+acpi_pad              184320  0
+acpi_tad               20480  0
+sch_fq_codel           24576  2
+msr                    16384  0
+parport_pc             53248  0
+ppdev                  24576  0
+lp                     28672  0
+drm                   581632  12 drm_kms_helper,drm_display_helper,drm_buddy,i915,ttm
+ramoops                32768  0
+parport                73728  3 parport_pc,lp,ppdev
+pstore_blk             16384  0
+reed_solomon           28672  1 ramoops
+pstore_zone            32768  1 pstore_blk
+efi_pstore             16384  0
+ip_tables              32768  0
+x_tables               57344  1 ip_tables
+autofs4                45056  2
+i2c_hid_acpi           16384  0
+i2c_hid                36864  1 i2c_hid_acpi
+hid                   159744  1 i2c_hid
+rtsx_pci_sdmmc         36864  0
+nvme                   49152  2
+intel_lpss_pci         28672  0
+r8169                 102400  0
+spi_intel_pci          16384  0
+ahci                   49152  0
+crc32_pclmul           16384  0
+i2c_i801               36864  0
+intel_lpss             16384  1 intel_lpss_pci
+spi_intel              28672  1 spi_intel_pci
+nvme_core             147456  3 nvme
+realtek                32768  1
+rtsx_pci              106496  1 rtsx_pci_sdmmc
+libahci                49152  1 ahci
+xhci_pci               24576  0
+i2c_smbus              20480  1 i2c_i801
+idma64                 20480  0
+xhci_pci_renesas       20480  1 xhci_pci
+wmi                    32768  4 intel_wmi_thunderbolt,wmi_bmof,ideapad_laptop,think_lmi
+video                  65536  2 ideapad_laptop,i915
+pinctrl_icelake        32768  0
+
+[alex@localhost ~]$ lsmod
+ip6t_rpfilter          12595  1 
+ip6t_REJECT            12625  2 
+nf_reject_ipv6         13717  1 ip6t_REJECT
+ipt_REJECT             12541  2 
+nf_reject_ipv4         13373  1 ipt_REJECT
+xt_conntrack           12760  11 
+ebtable_nat            12807  1 
+ebtable_broute         12731  1 
+bridge                151336  1 ebtable_broute
+stp                    12976  1 bridge
+llc                    14552  2 stp,bridge
+ip6table_nat           12864  1 
+nf_conntrack_ipv6      18935  7 
+nf_defrag_ipv6         35104  1 nf_conntrack_ipv6
+nf_nat_ipv6            14131  1 ip6table_nat
+ip6table_mangle        12700  1 
+ip6table_security      12710  1 
+ip6table_raw           12683  1 
+iptable_nat            12875  1 
+nf_conntrack_ipv4      15053  6 
+nf_defrag_ipv4         12729  1 nf_conntrack_ipv4
+nf_nat_ipv4            14115  1 iptable_nat
+nf_nat                 26583  2 nf_nat_ipv4,nf_nat_ipv6
+iptable_mangle         12695  1 
+iptable_security       12705  1 
+iptable_raw            12678  1 
+nf_conntrack          139264  6 nf_nat,nf_nat_ipv4,nf_nat_ipv6,xt_conntrack,nf_conntrack_ipv4,nf_conntrack_ipv6
+ip_set                 45799  0 
+nfnetlink              14519  1 ip_set
+ebtable_filter         12827  1 
+ebtables               35009  3 ebtable_broute,ebtable_nat,ebtable_filter
+ip6table_filter        12815  1 
+ip6_tables             26912  5 ip6table_filter,ip6table_mangle,ip6table_security,ip6table_nat,ip6table_raw
+iptable_filter         12810  1 
+intel_powerclamp       14451  0 
+iosf_mbi               15582  0 
+crc32_pclmul           13133  0 
+ghash_clmulni_intel    13273  0 
+snd_intel8x0           38199  0 
+ppdev                  17671  0 
+snd_ac97_codec        130479  1 snd_intel8x0
+ac97_bus               12730  1 snd_ac97_codec
+aesni_intel           189456  0 
+lrw                    13286  1 aesni_intel
+snd_seq                62774  0 
+gf128mul               15139  1 lrw
+glue_helper            13990  1 aesni_intel
+ablk_helper            13597  1 aesni_intel
+cryptd                 21190  3 ghash_clmulni_intel,aesni_intel,ablk_helper
+snd_seq_device         14356  1 snd_seq
+pcspkr                 12718  0 
+joydev                 17389  0 
+snd_pcm               101339  2 snd_ac97_codec,snd_intel8x0
+sg                     40719  0 
+snd_timer              30014  2 snd_pcm,snd_seq
+snd                    83987  6 snd_ac97_codec,snd_intel8x0,snd_timer,snd_pcm,snd_seq,snd_seq_device
+parport_pc             28205  0 
+parport                46395  2 ppdev,parport_pc
+video                  24538  0 
+soundcore              15047  1 snd
+i2c_piix4              22401  0 
+ip_tables              27126  5 iptable_security,iptable_filter,iptable_mangle,iptable_nat,iptable_raw
+xfs                   997727  2 
+libcrc32c              12644  3 xfs,nf_nat,nf_conntrack
+sd_mod                 46281  3 
+crc_t10dif             12912  1 sd_mod
+sr_mod                 22416  0 
+cdrom                  42600  1 sr_mod
+crct10dif_generic      12647  0 
+ata_generic            12923  0 
+pata_acpi              13053  0 
+vmwgfx                291993  1 
+drm_kms_helper        186531  1 vmwgfx
+syscopyarea            12529  1 drm_kms_helper
+sysfillrect            12701  1 drm_kms_helper
+sysimgblt              12640  1 drm_kms_helper
+fb_sys_fops            12703  1 drm_kms_helper
+ttm                    96673  1 vmwgfx
+ata_piix               35052  2 
+drm                   456166  4 ttm,drm_kms_helper,vmwgfx
+crct10dif_pclmul       14307  1 
+crct10dif_common       12595  3 crct10dif_pclmul,crct10dif_generic,crc_t10dif
+crc32c_intel           22094  1 
+serio_raw              13434  0 
+libata                243094  3 pata_acpi,ata_generic,ata_piix
+e1000                 137624  0 
+drm_panel_orientation_quirks    17180  1 drm
+dm_mirror              22289  0 
+dm_region_hash         20813  1 dm_mirror
+dm_log                 18411  2 dm_region_hash,dm_mirror
+dm_mod                124501  8 dm_log,dm_mirror
+
+3. Просмотреть информацию о процессоре и модулях оперативной памяти 
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ lscpu
+Архитектура:                     x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Address sizes:                   39 bits physical, 48 bits virtual
+Порядок байт:                    Little Endian
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+ID прроизводителя:               GenuineIntel
+Имя модели:                      Intel(R) Core(TM) i3-1005G1 CPU @ 1.20GHz
+Семейство ЦПУ:                   6
+Модель:                          126
+Потоков на ядро:                 2
+Ядер на сокет:                   2
+Сокетов:                         1
+Степпинг:                        5
+CPU max MHz:                     3400,0000
+CPU min MHz:                     400,0000
+BogoMIPS:                        2380.80
+Флаги:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust sgx bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves split_lock_detect dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid sgx_lc fsrm md_clear flush_l1d arch_capabilities
+Виртуализация:                   VT-x
+L1d cache:                       96 KiB (2 instances)
+L1i cache:                       64 KiB (2 instances)
+L2 cache:                        1 MiB (2 instances)
+L3 cache:                        4 MiB (1 instance)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX disabled
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Mmio stale data:   Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Retbleed:          Mitigation; Enhanced IBRS
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence
+Vulnerability Srbds:             Mitigation; Microcode
+Vulnerability Tsx async abort:   Not affected
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ dmidecode --type 17
+# dmidecode 3.3
+Getting SMBIOS data from sysfs.
+SMBIOS 3.1.1 present.
+
+Handle 0x0004, DMI type 17, 40 bytes
+Memory Device
+	Array Handle: 0x0003
+	Error Information Handle: Not Provided
+	Total Width: 64 bits
+	Data Width: 64 bits
+	Size: 8 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: ChannelA-DIMM0
+	Bank Locator: BANK 0
+	Type: DDR4
+	Type Detail: Synchronous
+	Speed: 2667 MT/s
+	Manufacturer: Kingston
+	Serial Number: 299AB964
+	Asset Tag: 9876543210
+	Part Number: 9905700-026.A00G    
+	Rank: 1
+	Configured Memory Speed: 2667 MT/s
+	Minimum Voltage: Unknown
+	Maximum Voltage: Unknown
+	Configured Voltage: 1.2 V
+
+Handle 0x0005, DMI type 17, 40 bytes
+Memory Device
+	Array Handle: 0x0003
+	Error Information Handle: Not Provided
+	Total Width: Unknown
+	Data Width: Unknown
+	Size: No Module Installed
+	Form Factor: Unknown
+	Set: None
+	Locator: ChannelB-DIMM0
+	Bank Locator: BANK 2
+	Type: Unknown
+	Type Detail: None
+	Speed: Unknown
+	Manufacturer: Not Specified
+	Serial Number: Not Specified
+	Asset Tag: Not Specified
+	Part Number: Not Specified
+	Rank: Unknown
+	Configured Memory Speed: Unknown
+	Minimum Voltage: Unknown
+	Maximum Voltage: Unknown
+	Configured Voltage: Unknown
+
+[alex@localhost ~]$ lscpu
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                1
+On-line CPU(s) list:   0
+Thread(s) per core:    1
+Core(s) per socket:    1
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 126
+Model name:            Intel(R) Core(TM) i3-1005G1 CPU @ 1.20GHz
+Stepping:              5
+CPU MHz:               1190.399
+BogoMIPS:              2380.79
+Hypervisor vendor:     KVM
+Virtualization type:   full
+L1d cache:             48K
+L1i cache:             32K
+L2 cache:              512K
+L3 cache:              4096K
+NUMA node0 CPU(s):     0
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq monitor ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase avx2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
+
+[alex@localhost ~]$ sudo lshw -class memory
+  *-firmware                
+       description: BIOS
+       vendor: innotek GmbH
+       physical id: 0
+       version: VirtualBox
+       date: 12/01/2006
+       size: 128KiB
+       capacity: 128KiB
+       capabilities: isa pci cdboot bootselect int9keyboard int10video acpi
+  *-memory
+       description: System memory
+       physical id: 1
+       size: 512MiB
+4. Получить информацию о жестком диске
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ df -h
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0         7:0    0     4K  1 loop /snap/bare/5
+loop1         7:1    0  63,3M  1 loop /snap/core20/1822
+loop2         7:2    0 240,6M  1 loop /snap/firefox/2356
+loop3         7:3    0 346,3M  1 loop /snap/gnome-3-38-2004/119
+loop4         7:4    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop5         7:5    0  45,9M  1 loop /snap/snap-store/638
+loop6         7:6    0  49,8M  1 loop /snap/snapd/18357
+loop7         7:7    0   304K  1 loop /snap/snapd-desktop-integration/49
+nvme0n1     259:0    0 238,5G  0 disk 
+├─nvme0n1p1 259:1    0   512M  0 part /boot/efi
+└─nvme0n1p2 259:2    0   238G  0 part /var/snap/firefox/common/host-hunspell
+
+
+Модель: WDC PC SN530 SDBPMPZ-256G-1101 (nvme)
+Диск /dev/nvme0n1: 256GB
+Размер сектора (логич./физич.): 512B/512B
+Таблица разделов: gpt
+Флаги диска: 
+
+Номер  Начало  Конец  Размер  Файловая система  Имя                   Флаги
+ 1     1049kB  538MB  537MB   fat32             EFI System Partition  загрузочный, esp
+ 2     538MB   256GB  256GB   ext4
+
+[alex@localhost ~]$ df -h
+Файловая система        Размер Использовано  Дост Использовано% Cмонтировано в
+devtmpfs                  232M            0  232M            0% /dev
+tmpfs                     244M            0  244M            0% /dev/shm
+tmpfs                     244M         4,7M  239M            2% /run
+tmpfs                     244M            0  244M            0% /sys/fs/cgroup
+/dev/mapper/centos-root   6,2G         1,5G  4,8G           23% /
+/dev/sda1                1014M         138M  877M           14% /boot
+tmpfs                      49M            0   49M            0% /run/user/1000
+
+
+ATA device, with non-removable media
+        Model Number:       VBOX HARDDISK                           
+        Serial Number:      VBbbc29696-8ed84511 
+        Firmware Revision:  1.0     
+Standards:
+        Used: ATA/ATAPI-6 published, ANSI INCITS 361-2002 
+        Supported: 6 5 4 
+Configuration:
+        Logical         max     current
+        cylinders       16383   16383
+        heads           16      16
+        sectors/track   63      63
+        --
+        CHS current addressable sectors:   16514064
+        LBA    user addressable sectors:   16777216
+        Logical/Physical Sector size:           512 bytes
+        device size with M = 1024*1024:        8192 MBytes
+        device size with M = 1000*1000:        8589 MBytes (8 GB)
+        cache/buffer size  = 256 KBytes (type=DualPortCache)
+
+5. Добавить в виртуальную машину второй сетевой интерфейс (вывести информацию о нем в виртуалках)
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+2: enp1s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether b4:a9:fc:e0:08:bc brd ff:ff:ff:ff:ff:ff
+
+6. Узнать полную информацию об использованной и неиспользованной памяти
+[alex@localhost ~]$ free
+              total        used        free      shared  buff/cache   available
+Mem:         498676      146936      245932        4724      105808      333904
+Swap:        839676           0      839676
+
+\alex@alex-Lenovo-ThinkBook-14-IIL:~$ free
+               total        used        free      shared  buff/cache   available
+Память:    7634132     2941936      643072     1179616     4049124     3221528
+Подкачка:    2097148           0     2097148
+
+7. Создать пользователя new_admin_user, Настроить ssh доступ пользователю по ключу на VM, запретить ему авторизацию по паролю
+Adduser TestUser (не скопировал, просто написал)
+
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/alex/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/alex/.ssh/id_rsa
+Your public key has been saved in /home/alex/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:6ToMnUChNzQ6aETWw2N8QVEXxBt5lbfdac3NqyBLBIc alex@alex-Lenovo-ThinkBook-14-IIL
+The key's randomart image is:
++---[RSA 3072]----+
+|.++ ==+.++o ...  |
+|o. @.o E.= . . . |
+|..=.*   o +   .oB|
+|.  o..   +     +B|
+|     o .S     . .|
+|    . o. o .   . |
+|     o  o o . .  |
+|      o. .   .   |
+|      ..         |
++----[SHA256]-----+
+
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ ssh-copy-id TestUser@192.168.8.105
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+TestUser@192.168.8.105's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'TestUser@192.168.8.105'"
+and check to make sure that only the key(s) you wanted were added.
+
+alex@alex-Lenovo-ThinkBook-14-IIL:~$ ssh TestUser@192.168.8.105
+Last login: Mon Jul  3 13:38:13 2023 from 192.168.8.103
+[TestUser@localhost ~]$ 
+
+Изменил в файле /etc/ssh/ssh_config строку    PasswordAuthentication no
+8. Вывести список файловых систем, которые поддерживаются ядром
+[alex@localhost ~]$ ls /lib/modules/3.10.0-1160.el7.x86_64/kernel/fs/
+binfmt_misc.ko.xz  ceph    dlm    fat      gfs2   lockd          nfs_common  overlayfs  udf
+btrfs              cifs    exofs  fscache  isofs  mbcache.ko.xz  nfsd        pstore     xfs
+cachefiles         cramfs  ext4   fuse     jbd2   nfs            nls         squashfs
+[alex@localhost ~]$ 
+
